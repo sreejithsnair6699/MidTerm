@@ -32,6 +32,10 @@ module objects {
                 this.x -= this._verticalSpeed;
                 this._updatePosition();
                 break;
+                case config.Scene.LEVEL3:
+                this.x += this._verticalSpeed;
+                this._updatePosition();
+                break;
             }
             
         }
@@ -45,6 +49,11 @@ module objects {
                 break;
                 case config.Scene.LEVEL2:
                 if(this.x < 0 - this.Width) {
+                    this.Reset();
+                }
+                break;
+                case config.Scene.LEVEL3:
+                if(this.x > 640 + this.Width) {
                     this.Reset();
                 }
                 break;
@@ -64,6 +73,11 @@ module objects {
                 break;
                 case config.Scene.LEVEL2:
                 this.x = 640 + this.Width;
+                this.y = Math.floor((Math.random() * (480 - this.Height)) + this.HalfHeight);
+                this.IsColliding = false;
+                break;
+                case config.Scene.LEVEL3:
+                this.x = 0 - this.Width;
                 this.y = Math.floor((Math.random() * (480 - this.Height)) + this.HalfHeight);
                 this.IsColliding = false;
                 break;

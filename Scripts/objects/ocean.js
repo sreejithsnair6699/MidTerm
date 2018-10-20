@@ -19,12 +19,18 @@ var objects;
         // constructor
         function Ocean() {
             var _this = _super.call(this, "ocean") || this;
+            _this.firstIteration = true;
             _this.Start();
             return _this;
         }
         // private methods
         Ocean.prototype._checkBounds = function () {
             switch (managers.Game.currentState) {
+                case config.Scene.START:
+                    if (this.y >= 0) {
+                        this.Reset();
+                    }
+                    break;
                 case config.Scene.PLAY:
                     if (this.y >= 0) {
                         this.Reset();
@@ -35,31 +41,59 @@ var objects;
                         this.Reset();
                     }
                     break;
+                case config.Scene.LEVEL3:
+                    if (this.x >= 1440) {
+                        this.Reset();
+                    }
+                    break;
+                case config.Scene.OVER:
+                    if (this.y >= 0) {
+                        this.Reset();
+                    }
+                    break;
             }
         };
         Ocean.prototype._move = function () {
             switch (managers.Game.currentState) {
+                case config.Scene.START:
+                    this.y += this.verticalSpeed;
+                    break;
                 case config.Scene.PLAY:
                     this.y += this.verticalSpeed;
                     break;
                 case config.Scene.LEVEL2:
                     this.x -= this.verticalSpeed;
                     break;
+                case config.Scene.LEVEL3:
+                    this.x += this.verticalSpeed;
+                    break;
+                case config.Scene.OVER:
+                    this.y += this.verticalSpeed;
+                    break;
             }
         };
         // public methods
         Ocean.prototype.Reset = function () {
             switch (managers.Game.currentState) {
+                case config.Scene.START:
+                    this.y = -960;
+                    break;
                 case config.Scene.PLAY:
                     this.y = -960;
                     break;
                 case config.Scene.LEVEL2:
                     this.x = 1440;
                     break;
+                case config.Scene.LEVEL3:
+                    this.x = 640;
+                    break;
+                case config.Scene.OVER:
+                    this.y = -960;
+                    break;
             }
         };
         Ocean.prototype.Start = function () {
-            if (managers.Game.currentState == config.Scene.LEVEL2) {
+            if (managers.Game.currentState == config.Scene.LEVEL2 || managers.Game.currentState == config.Scene.LEVEL3) {
                 this.rotation = 90;
             }
             this.Reset();

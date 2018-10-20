@@ -1,5 +1,5 @@
 namespace scenes {
-    export class Level2 extends objects.Scene {
+    export class Level3 extends objects.Scene {
       // private instance variable
       private _player: objects.Player;
       private _ocean: objects.Ocean;
@@ -24,7 +24,7 @@ namespace scenes {
       // public methods
   
       public Start(): void {
-        this._cloudNum = 2;
+        this._cloudNum = 3;
   
         // Instantiates a new Array container of Type objects.Cloud
         this._clouds = new Array<objects.Cloud>();
@@ -55,11 +55,6 @@ namespace scenes {
           cloud.Update();
           managers.Collision.Check(this._player, cloud);
         });
-
-        if(managers.Game.scoreBoard.Score >= 1000) {
-          managers.Game.currentState = config.Scene.LEVEL3;
-          managers.Game.scoreBoard.Score = 0; 
-        }
       }
   
       public Destroy(): void {

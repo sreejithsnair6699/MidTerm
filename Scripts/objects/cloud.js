@@ -35,6 +35,11 @@ var objects;
                     this.x -= this._horizontalSpeed;
                     this._updatePosition();
                     break;
+                case config.Scene.LEVEL3:
+                    this.y += this._verticalSpeed;
+                    this.x += this._horizontalSpeed;
+                    this._updatePosition();
+                    break;
             }
         };
         Cloud.prototype._checkBounds = function () {
@@ -46,6 +51,11 @@ var objects;
                     break;
                 case config.Scene.LEVEL2:
                     if (this.x < 0 - this.Width) {
+                        this.Reset();
+                    }
+                    break;
+                case config.Scene.LEVEL3:
+                    if (this.x > 640 + this.Width) {
                         this.Reset();
                     }
                     break;
@@ -65,6 +75,13 @@ var objects;
                     this._verticalSpeed = Math.floor((Math.random() * 2) - 1);
                     this._horizontalSpeed = Math.floor((Math.random() * 5) + 5);
                     this.x = 640 + this.Width;
+                    this.y = Math.floor((Math.random() * (480 - this.Height)) + this.HalfHeight);
+                    this.IsColliding = false;
+                    break;
+                case config.Scene.LEVEL3:
+                    this._verticalSpeed = Math.floor((Math.random() * 2) - 1);
+                    this._horizontalSpeed = Math.floor((Math.random() * 5) + 5);
+                    this.x = 0 - this.Width;
                     this.y = Math.floor((Math.random() * (480 - this.Height)) + this.HalfHeight);
                     this.IsColliding = false;
                     break;

@@ -13,19 +13,19 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var scenes;
 (function (scenes) {
-    var Level2 = /** @class */ (function (_super) {
-        __extends(Level2, _super);
+    var Level3 = /** @class */ (function (_super) {
+        __extends(Level3, _super);
         // public properties
         // constructor
-        function Level2() {
+        function Level3() {
             var _this = _super.call(this) || this;
             _this.Start();
             return _this;
         }
         // private methods
         // public methods
-        Level2.prototype.Start = function () {
-            this._cloudNum = 2;
+        Level3.prototype.Start = function () {
+            this._cloudNum = 3;
             // Instantiates a new Array container of Type objects.Cloud
             this._clouds = new Array();
             // Fill the Cloud Array with Clouds
@@ -38,7 +38,7 @@ var scenes;
             this._engineSound.loop = -1; // loop forever
             this.Main();
         };
-        Level2.prototype.Update = function () {
+        Level3.prototype.Update = function () {
             var _this = this;
             this._ocean.Update();
             this._player.Update();
@@ -50,17 +50,13 @@ var scenes;
                 cloud.Update();
                 managers.Collision.Check(_this._player, cloud);
             });
-            if (managers.Game.scoreBoard.Score >= 1000) {
-                managers.Game.currentState = config.Scene.LEVEL3;
-                managers.Game.scoreBoard.Score = 0;
-            }
         };
-        Level2.prototype.Destroy = function () {
+        Level3.prototype.Destroy = function () {
             this.removeAllChildren();
             this._engineSound.stop();
         };
-        Level2.prototype.Reset = function () { };
-        Level2.prototype.Main = function () {
+        Level3.prototype.Reset = function () { };
+        Level3.prototype.Main = function () {
             var _this = this;
             // adds ocean to the scene
             this._ocean = new objects.Ocean();
@@ -78,8 +74,8 @@ var scenes;
             // add ScoreBoard UI to the Scene
             managers.Game.scoreBoard.AddGameUI(this);
         };
-        return Level2;
+        return Level3;
     }(objects.Scene));
-    scenes.Level2 = Level2;
+    scenes.Level3 = Level3;
 })(scenes || (scenes = {}));
-//# sourceMappingURL=level2.js.map
+//# sourceMappingURL=level3.js.map
