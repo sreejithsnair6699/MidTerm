@@ -52,7 +52,6 @@ var scenes;
             });
             if (managers.Game.scoreBoard.Score >= 500) {
                 managers.Game.currentState = config.Scene.LEVEL2;
-                managers.Game.scoreBoard.Score = 0;
             }
         };
         Play.prototype.Destroy = function () {
