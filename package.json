@@ -1,10 +1,10 @@
 {
-  "name": "comp397-f2018-lesson4",
+  "name": "comp397-f2018-midterm-300933572",
   "version": "1.0.0",
-  "description": "COMP397 - F2018 - Lesson 4 - FSM Intro",
+  "description": "COMP397 - F2018 - Mid Term",
   "main": "index.js",
   "repository": "https://github.com/CentennialCollege/COMP397-F2018-Lesson4.git",
-  "author": "Tom Tsiliopoulos <tsiliopoulos@hotmail.com>",
+  "author": "Sreejith <sreejithsnair6699@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "easeljs": "^1.0.2",
