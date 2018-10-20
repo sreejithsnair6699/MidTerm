@@ -24,18 +24,44 @@ var objects;
         }
         // private methods
         Ocean.prototype._checkBounds = function () {
-            if (this.y >= 0) {
-                this.Reset();
+            switch (managers.Game.currentState) {
+                case config.Scene.PLAY:
+                    if (this.y >= 0) {
+                        this.Reset();
+                    }
+                    break;
+                case config.Scene.LEVEL2:
+                    if (this.x <= 640) {
+                        this.Reset();
+                    }
+                    break;
             }
         };
         Ocean.prototype._move = function () {
-            this.y += this.verticalSpeed;
+            switch (managers.Game.currentState) {
+                case config.Scene.PLAY:
+                    this.y += this.verticalSpeed;
+                    break;
+                case config.Scene.LEVEL2:
+                    this.x -= this.verticalSpeed;
+                    break;
+            }
         };
         // public methods
         Ocean.prototype.Reset = function () {
-            this.y = -960;
+            switch (managers.Game.currentState) {
+                case config.Scene.PLAY:
+                    this.y = -960;
+                    break;
+                case config.Scene.LEVEL2:
+                    this.x = 1440;
+                    break;
+            }
         };
         Ocean.prototype.Start = function () {
+            if (managers.Game.currentState == config.Scene.LEVEL2) {
+                this.rotation = 90;
+            }
             this.Reset();
             this.verticalSpeed = 5; // 5 px per frame
         };

@@ -25,7 +25,7 @@ var scenes;
         // private methods
         // public methods
         Play.prototype.Start = function () {
-            this._cloudNum = 3;
+            this._cloudNum = 1;
             // Instantiates a new Array container of Type objects.Cloud
             this._clouds = new Array();
             // Fill the Cloud Array with Clouds
@@ -50,6 +50,10 @@ var scenes;
                 cloud.Update();
                 managers.Collision.Check(_this._player, cloud);
             });
+            if (managers.Game.scoreBoard.Score >= 500) {
+                managers.Game.currentState = config.Scene.LEVEL2;
+                managers.Game.scoreBoard.Score = 0;
+            }
         };
         Play.prototype.Destroy = function () {
             this.removeAllChildren();

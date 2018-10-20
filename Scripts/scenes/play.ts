@@ -24,7 +24,7 @@ namespace scenes {
     // public methods
 
     public Start(): void {
-      this._cloudNum = 3;
+      this._cloudNum = 1;
 
       // Instantiates a new Array container of Type objects.Cloud
       this._clouds = new Array<objects.Cloud>();
@@ -55,6 +55,11 @@ namespace scenes {
         cloud.Update();
         managers.Collision.Check(this._player, cloud);
       });
+
+      if(managers.Game.scoreBoard.Score >= 500) {
+        managers.Game.currentState = config.Scene.LEVEL2;
+        managers.Game.scoreBoard.Score = 0; 
+      }
     }
 
     public Destroy(): void {

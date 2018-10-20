@@ -24,22 +24,51 @@ var objects;
         }
         // private methods
         Cloud.prototype._move = function () {
-            this.y += this._verticalSpeed;
-            this.x += this._horizontalSpeed;
-            this._updatePosition();
+            switch (managers.Game.currentState) {
+                case config.Scene.PLAY:
+                    this.y += this._verticalSpeed;
+                    this.x += this._horizontalSpeed;
+                    this._updatePosition();
+                    break;
+                case config.Scene.LEVEL2:
+                    this.y += this._verticalSpeed;
+                    this.x -= this._horizontalSpeed;
+                    this._updatePosition();
+                    break;
+            }
         };
         Cloud.prototype._checkBounds = function () {
-            if (this.y > 480 + this.Height) {
-                this.Reset();
+            switch (managers.Game.currentState) {
+                case config.Scene.PLAY:
+                    if (this.y > 480 + this.Height) {
+                        this.Reset();
+                    }
+                    break;
+                case config.Scene.LEVEL2:
+                    if (this.x < 0 - this.Width) {
+                        this.Reset();
+                    }
+                    break;
             }
         };
         // public methods
         Cloud.prototype.Reset = function () {
-            this._verticalSpeed = Math.floor((Math.random() * 5) + 5);
-            this._horizontalSpeed = Math.floor((Math.random() * 4) - 2);
-            this.y = -this.Height;
-            this.x = Math.floor((Math.random() * (640 - this.Width)) + this.HalfWidth);
-            this.IsColliding = false;
+            switch (managers.Game.currentState) {
+                case config.Scene.PLAY:
+                    this._verticalSpeed = Math.floor((Math.random() * 5) + 5);
+                    this._horizontalSpeed = Math.floor((Math.random() * 4) - 2);
+                    this.y = -this.Height;
+                    this.x = Math.floor((Math.random() * (640 - this.Width)) + this.HalfWidth);
+                    this.IsColliding = false;
+                    break;
+                case config.Scene.LEVEL2:
+                    this._verticalSpeed = Math.floor((Math.random() * 2) - 1);
+                    this._horizontalSpeed = Math.floor((Math.random() * 5) + 5);
+                    this.x = 640 + this.Width;
+                    this.y = Math.floor((Math.random() * (480 - this.Height)) + this.HalfHeight);
+                    this.IsColliding = false;
+                    break;
+            }
         };
         Cloud.prototype.Start = function () {
             this.regX = this.HalfWidth;
